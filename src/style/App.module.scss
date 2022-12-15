@@ -1,0 +1,227 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html,
+div,
+span,
+label,
+section,
+aside,
+footer,
+header,
+nav,
+video,
+table,
+tr,
+td,
+th {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    text-size-adjust: 100%;
+}
+
+a {
+    background-color: transparent;
+    color: black;
+    text-decoration: none;
+}
+
+a:active,
+a:hover {
+    outline: 0;
+    color: black;
+}
+
+a:visited {
+    text-decoration: none;
+    color: black;
+}
+
+input,
+textarea {
+    outline: 0;
+}
+
+input:focus,
+textarea:focus {
+    outline: 0;
+}
+
+button,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="checkbox"],
+input[type="radio"] {
+    cursor: pointer;
+}
+
+legend {
+    border: 0;
+    padding: 0;
+}
+
+textarea {
+    overflow: auto;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+ul,
+ol,
+dt,
+dl {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.clear {
+    clear: both;
+}
+
+address,
+caption,
+cite,
+code,
+dfn,
+em,
+var {
+    font-style: normal;
+    display: block;
+}
+
+select {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+    word-break: break-all;
+}
+
+@mixin base($w, $h, $display) {
+    width: $w;
+    height: $h;
+    display: $display;
+}
+
+@mixin flex($f, $just, $align) {
+    flex-flow: $f;
+    justify-content: $just;
+    align-items: $align;
+}
+
+@mixin text($fcolor, $falign, $fheight) {
+    color: $fcolor;
+    text-align: $falign;
+    line-height: $fheight;
+}
+
+.loginContainer {
+    @include base(300px, 200px, flex);
+    @include flex(column nowrap, space-around, center);
+    margin: 0 auto;
+    margin-top: 30vh;
+
+    &>form {
+        display: flex;
+        height: inherit;
+        @include flex(column nowrap, space-around, center);
+
+        &>input {
+            @include base(250px, 30px, block);
+        }
+
+        &>a {
+            @include base(250px, 30px, block);
+            @include text(#666, center, 30px);
+            font-size: 14px;
+            border: 1px solid #ccc;
+        }
+    }
+}
+
+.btn {
+    @include base(250px, 30px, block);
+    border: none;
+}
+
+.todo {
+    @include base(100%, auto, block);
+
+    &>h1 {
+        @include base(100%, 80px, block);
+        line-height: 80px;
+        text-align: center;
+    }
+
+    &>div{
+        @include base(100%, auto, flex);
+        @include flex(column nowrap, center, center);
+        margin: 0 auto;
+        &>form {
+            @include base(600px, 50px, flex);
+            @include flex(row nowrap, center, center);
+
+            &>input {
+                @include base(500px, 30px, block);
+                border: none;
+                background-color: #eee;
+                text-indent: 10px;
+                border-radius: 30px;
+            }
+
+            &>button {
+                @include base(100px, 30px, block);
+                border: none;
+                background-color: lavender;
+                border-radius: 30px;
+            }
+        }
+        &>div {
+            @include base(inherit, 50px, flex);
+            @include flex(column nowrap, start, center);
+            &>div{
+                @include base(600px, 50px, flex);
+                @include flex(row nowrap, space-around, center);
+                &>span {
+                    @include base(490px, 30px, block);
+                    line-height: 30px;
+                    text-indent: 10px;
+                }
+                &>button {
+                    @include base(50px, 30px, block);
+                    border: none;
+                    border-radius: 30px;
+                }
+    
+                &>input {
+                    @include base(490px, 30px, block);
+                    border: none;
+                }
+
+            }
+        }
+    }
+
+}
+.complete{
+    text-decoration: line-through;
+    color: #999;
+}
+.notComplete{
+    text-decoration: none;
+}
