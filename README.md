@@ -17,9 +17,9 @@ function App() {
   return (
     <Router basename={process.env.PUBLIC_URL}>
       <Routes>
-          <Route path={"/todo" }element={<Todo />}/>
-          <Route path={"/join"} element={<Join />}/>
-          <Route path={`/`} element={<Home />} />
+          <Route path="/todo" element={<Todo />}/>
+          <Route path="/join" element={<Join />}/>
+          <Route path="/" element={<Home />} />
       </Routes>
   </Router>
   )
@@ -33,7 +33,7 @@ function App() {
         auth === null ? navigate('/') : navigate('/todo');
     },[])
 ```
-로컬스토리지에 토큰값이 없을 경우에 `/` 로 있을 경우엔 `/`로 리다이렉트 됩니다.
+로컬스토리지에 토큰값이 없을 경우에 `/` 로 있을 경우엔 `/todo`로 리다이렉트 됩니다.
 
   <br>
 
@@ -43,7 +43,7 @@ axios.post(`${APIURL}/auth/signup`, body)
      .then(res => { alert("회원가입이 완료되었습니다."); navigate('/') })
      .catch(err => alert('이미 있거나 옳지않은 아이디와 비밀번호입니다. 다시 입력해주세요.'))
 ```
-navigate를 이용해 회원가입 완료 후 로그인페이지로 리다이렉트하게 설정했습니다.
+`useNavigate`를 이용해 회원가입 완료 후 로그인페이지로 리다이렉트하게 설정했습니다.
 
 
 <br>
@@ -93,7 +93,7 @@ useEffect(()=>{
 },[upTodo]);
 ```
 `axios`로 데이터를 받아온 후 응답 값을 `.map`을 이용해 컴포넌트로 전달합니다.
-데이터가 추가되거나 변경될 때마다 새로운 값을 불러옵니다.
+`useEffect` 함수에서 `upTodo` 인자로 데이터가 추가되거나 변경될 때마다 새로운 값을 불러옵니다.
  <br>
 
 ### UPDATE
@@ -112,7 +112,7 @@ const updateChange = ()=>{
     }
 ```
 `edit` 값을 `boolean` 으로 설정 후 `수정` 버튼을 클릭할 때 마다 수정이 가능하게 했습니다.
-api 와 통신시에 부모로부터 받은 `upTodo` 값을 갱신하여 `getTodo()`를 실행합니다.
+api 와 통신시에 부모로부터 받은 `setUpdate(updateTodo)`로 `upTodo`값을 갱신하여 `getTodo()`를 실행합니다.
 
  <br>
  
@@ -128,5 +128,5 @@ api 와 통신시에 부모로부터 받은 `upTodo` 값을 갱신하여 `getTod
         .catch(err => alert('오류 발생!'));
     }
 ```
-`axios`를 이용해 객체를 삭제합니다.
+`axios`를 이용해 객체를 삭제하며 마찬가지로 setUpdate를 통해 리스트를 갱신합니다.
  <br>
