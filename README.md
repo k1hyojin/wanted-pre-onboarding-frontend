@@ -7,7 +7,7 @@
 ### 프로젝트 실행방법
 ```
  $ npm install
- $ npm run serve
+ $ npm start
 ```
 
 ## 라우팅
